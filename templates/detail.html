@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<!-- {% if user.is_authenticated %} -->
+	<div style="margin: 5%">
+	  <h2>{{ data.title }}</h2>
+	  <br>{{ data.updated_date }}
+	  <br>{{ data.category }}
+	  <hr>
+	  <p>{{ data.content }}</p>
+	</div>
+<!-- {% endif %} -->
+{% endblock %}
