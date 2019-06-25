@@ -2,23 +2,35 @@ from django.db import models
 from datetime import datetime
 from django.contrib.auth.models import AbstractUser
 
-class Category(models.Model):
-	name = models.CharField(max_length=100)
-	date_created = models.DateField(auto_now_add=True)
-	slug = models.SlugField()
+# class Category(models.Model):
+# 	name = models.CharField(max_length=100)
+# 	date_created = models.DateField(auto_now_add=True)
+# 	slug = models.SlugField()
 
-	def __str__(self):
-		return self.name
+# 	def __str__(self):
+# 		return self.name
 	# def get_absolute_url(self):
+
+
+
 
 
 class Blog(models.Model):
 	title = models.CharField(max_length=100, null=False)
 	content = models.TextField(null=False)
-	# image  = models.ImageField(null=False
+	image  = models.ImageField(null=True)
 	updated_date = models.DateTimeField(auto_now_add=True, null=True)
-	category = models.ForeignKey('Category', null=True, blank=True, on_delete=models.CASCADE)
-	slug = models.SlugField(unique=True)
+	# category = models.ForeignKey('Category', null=True, blank=True, on_delete=models.CASCADE)
+	CATEGORY_CHOICES = (
+		("BUSINESS", "Business"),
+		("TECHNOLOGY", "Technology"),
+		("SPORT", "Sport"),
+		("POLITICS", "Politics"),
+		("OTHER", "other"),
+		)
+	category = models.CharField(max_length=30, choices=CATEGORY_CHOICES, default= "BUSINESS")
+	
+	
 
 
 class User(AbstractUser):

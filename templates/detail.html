@@ -3,12 +3,16 @@
 
 {% block content %}
 <!-- {% if user.is_authenticated %} -->
-	<div style="margin: 5%">
+	<div style="margin-left: 15%; margin-right: 10%"">
 	  <h2>{{ data.title }}</h2>
 	  <br>{{ data.updated_date }}
 	  <br>{{ data.category }}
 	  <hr>
-	  <p>{{ data.content }}</p>
+	  {% if data.image.url != '' %}
+	  <img src="{{ data.image.url }}">
+	  {% endif %}
+
 	</div>
+	{{ data.content|striptags }}
 <!-- {% endif %} -->
 {% endblock %}

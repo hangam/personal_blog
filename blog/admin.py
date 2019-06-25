@@ -2,7 +2,7 @@ from django.contrib import admin
 from .models import Blog
 from django.contrib.auth.admin import UserAdmin
 from .forms import SignUpForm
-from .models import User, Blog, Contact, Category
+from .models import User, Blog, Contact
 
 # class CustomUserAdmin(UserAdmin):
 # 	add_form = CustomUser
@@ -12,4 +12,4 @@ from .models import User, Blog, Contact, Category
 admin.site.register(User)
 admin.site.register(Blog)
 admin.site.register(Contact)
-admin.site.register(Category)
+

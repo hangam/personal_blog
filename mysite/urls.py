@@ -16,7 +16,11 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 from django.urls import path
+from django.conf import settings
+
+from django.conf.urls.static import static
 from blog import views
+
 from django.contrib.auth import views as auth_views
 # from blog.views import ArticleListView
 # from blog.core import views as core_views
@@ -29,7 +33,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     # path('', ArticleListView.as_view(), name='home'),
     path('detail/<int:id>/', views.detail, name='detail'),
-    path('category/<category_slug>', views.Category, name='category'),
     path('detail_category/<int:id>', views.detail_category, name='detail_category'),
     # path('register/', views.register, name='register'),
 
@@ -43,4 +46,11 @@ urlpatterns = [
     path('logout/', auth_views.LogoutView.as_view(template_name='logout.html'), name='logout'),
     # path('logout/', auth_views.logout, {})
 
+    path('business/', views.business, name='business'),
+    path('technology/', views.technology, name='technology'),
+    path('sport/', views.sport, name='sport'),
+    path('politics/', views.politics, name='politics'),
+    path('others/', views.others, name='others'),
 ]
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

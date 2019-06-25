@@ -50,10 +50,11 @@
               Categories
             </button>
             <div class="dropdown-menu">
-            {% for d in data1 %}
-              <a class="dropdown-item" href="{% url 'detail_category' d.id %}">{{ d.name }}</a>
-            {% endfor %}
-            <a class="dropdown-item" href=""></a>
+              <a class="dropdown-item" href="{% url 'business' %}">Business</a>
+              <a class="dropdown-item" href="{% url 'technology' %}">Technology</a>
+              <a class="dropdown-item" href="{% url 'sport' %}">Sport</a>
+              <a class="dropdown-item" href="{% url 'politics' %}">Politics</a>
+              <a class="dropdown-item" href="{% url 'others' %}">Others</a>
             </div>  
           </div>
           {% if user.is_authenticated %}

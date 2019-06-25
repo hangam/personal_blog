@@ -11,7 +11,8 @@
     <div class="row">
       <div class="col-md-8 mb-5">
       	
-        {% for data in data %}
+        {% for data in others %}
+        {% if data == 1%}
       		<h2>{{ data.title }}</h2>
       		<br>{{ data.updated_date }} | {{ data.category }}
       		<hr>
@@ -21,6 +22,9 @@
       		<p>{{ data.content|truncatechars:300 }}</p>
       		<a href="{% url 'detail' data.id %}">Read article.. &raquo;</a>
       		<br><br>
+        {% else %}
+          <h3>No content</h3>
+        {% endif %}
       	{% endfor %}
       </div>
 
@@ -43,33 +47,6 @@
       </div>
       
     </div>
-
-    <!-- /.row -->
-    <h3>Latest News</h3>
-    <div class="row">
-      {% for data in latest %}
-      <div class="col-md-4 mb-5">
-        <div class="card h-100">
-          {% if data.image.url != '' %}
-          <img class="card-img-top" src="{{ data.image.url }}" alt="" style="width: 350px; height: 250px;">
-          {% else %}
-          <img class="card-img-top" src="http://placehold.it/300x200" alt="">
-          {% endif %}
-          <div class="card-body">
-
-            <h4 class="card-title">{{ data.title }}</h4>
-            <p class="card-text">{{ data.content|truncatechars:50 }}</p>
-
-          </div>
-          <div class="card-footer">
-            <!-- <a href="{% url 'detail' data.id %}">Read article.. &raquo;</a> -->
-            <a href="{% url 'detail' data.id %}" class="btn btn-primary">read more</a>
-          </div>
-        </div>
-      </div>
-      {% endfor %} 
-    </div>
-    <!-- /.row -->
 
   </div>
   <!-- /.container -->

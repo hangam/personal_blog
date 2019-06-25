@@ -20,7 +20,7 @@ class Home(View): #class based home View
 		# data1 = Category.objects.all()
 		context = {
 		'data' : Blog.objects.all().order_by('-id'),
-		'data1' : models.Category.objects.all()
+		'latest' : Blog.objects.all().order_by('-id')[:3]
 		}
 		return render(request, 'home.html', context)
 # class Cate(View):
@@ -30,15 +30,32 @@ def detail_category(request,id):
 	category_detail = Blog.objects.filter(category_id=id)
 	return render(request, 'detail_category.html', {'category_detail':category_detail})
 
+def business(request):
+	business = Blog.objects.filter(category='BUSINESS')
+	return render(request, 'business.html', {'business':business})
 
-def Category(request, category_slug):
-	Categories = Category.objects.all()
-	post = Post.objects.all()
-	if category_slug:
-		Category = get_object_or_404(Category, slug=category_slug)
-		post = post.filter(category=category)
-	context = {'categories':categories, 'post':post, 'category':category}	
-	return render(request, 'category.html', context)
+def technology(request):
+	technology = Blog.objects.filter(category='TECHNOLOGY')
+	return render(request, 'technology.html', {'technology':technology})
+def sport(request):
+	sport = Blog.objects.filter(category='SPORT')
+	return render(request, 'sport.html', {'sport':sport})
+def politics(request):
+	politics = Blog.objects.filter(category='POLITICS')
+	return render(request, 'politics.html', {'politics':politics})
+def others(request):
+	others = Blog.objects.filter(category='OTHERS')
+	return render(request, 'others.html', {'others':others})
+
+
+# def Category(request, category_slug):
+# 	Categories = Category.objects.all()
+# 	post = Post.objects.all()
+# 	if category_slug:
+# 		Category = get_object_or_404(Category, slug=category_slug)
+# 		post = post.filter(category=category)
+# 	context = {'categories':categories, 'post':post, 'category':category}	
+# 	return render(request, 'category.html', context)
 
 		# return render(request, 'home.html', {'data': data})
 
